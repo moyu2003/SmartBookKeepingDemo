@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/lawinFragment">
+
+    <dialog
+        android:id="@+id/addFragment"
+        android:name="com.example.smartbookkeepingdemo.fragments.AddFragment">
+    </dialog>
+    <fragment
+        android:id="@+id/lawinFragment"
+        android:name="com.example.smartbookkeepingdemo.fragments.LawinFragment"
+        android:label="明细"
+        tools:layout="@layout/fragment_lawin" />
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.example.smartbookkeepingdemo.fragments.ChartFragment"
+        android:label="图表"
+        tools:layout="@layout/fragment_chart" />
+    <fragment
+        android:id="@+id/findFragment"
+        android:name="com.example.smartbookkeepingdemo.fragments.FindFragment"
+        android:label="发现"
+        tools:layout="@layout/fragment_find" />
+    <fragment
+        android:id="@+id/mineFragment"
+        android:name="com.example.smartbookkeepingdemo.fragments.MineFragment"
+        android:label="我的"
+        tools:layout="@layout/fragment_mine" />
+</navigation>
