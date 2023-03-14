@@ -1,11 +1,22 @@
 package com.example.smartbookkeepingdemo.activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import com.example.smartbookkeepingdemo.R
 import com.example.smartbookkeepingdemo.databinding.ActivityMainLoginBinding
+import com.example.smartbookkeepingdemo.logic.model.*
+import com.example.smartbookkeepingdemo.logic.network.SmartBookKeepingNetwork
+import com.example.smartbookkeepingdemo.myutils.showToast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+
 
 class MainLoginActivity : AppCompatActivity() {
 
@@ -45,46 +56,72 @@ class MainLoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             if (binding.loginButton.text.toString() == "登录") {
                 // TODO:  进行登录操作，登录成功后打开主界面
-//                CoroutineScope(Dispatchers.IO).launch {
-//                    login()
-//                }
+                CoroutineScope(Dispatchers.IO).launch {
+                    login()
+                }
             } else if (binding.loginButton.text.toString() == "注册并登录") {
                 // TODO:  进行注册操作，注册成功登录后打开主界面
+                CoroutineScope(Dispatchers.IO).launch {
+                    //register()
+                }
             }
         }
     }
 
     private suspend fun login() {
-//        try {
-//            val name = binding.loginName.text.toString()
-//            val passsword = binding.loginPassword.text.toString()
-//
-//            val response = NetWork.login(User(name, passsword))
-//            Log.d("TAG", response.toString())
-//
-//            CoroutineScope(Dispatchers.Main).launch {
-//                //UI操作
-//                response.msg.showToast()
-//            }
-//            if (response.code == 0) {
-//                val prefs = getPreferences(Context.MODE_PRIVATE)
-//                val editor = prefs.edit()
-//                if (binding.rememberPassword.isChecked) {
-//                    editor.putBoolean("remember_password", true)
-//                    editor.putString("name", name)
-//                    editor.putString("password", passsword)
-//                } else {
-//                    editor.clear()
-//                }
-//                editor.apply()
-//                UserInfo.id = response.data.id
-//                UserInfo.name = binding.loginName.text.toString()
-//                val intent = Intent(this@login_activity, MainActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//        } catch (e: Exception) {
-//            Log.e("TAG", "login(): ", e)
-//        }
+        try {
+            val name = binding.loginName.text.toString()
+            val password = binding.loginPassword.text.toString()
+            val response: LoginResponse = SmartBookKeepingNetwork.login(UserLogin(name,password))
+            CoroutineScope(Dispatchers.Main).launch {
+                response.message.showToast()
+           }
+            if (response.code == 200) {
+                val prefs = getPreferences(Context.MODE_PRIVATE)
+                val editor = prefs.edit()
+                editor.putString("token",response.data.data.token)
+                if (binding.rememberPassword.isChecked) {
+                    editor.putBoolean("remember_password", true)
+                    editor.putString("name", name)
+                    editor.putString("password", password)
+                } else {
+                    editor.clear()
+                }
+                editor.apply()
+                val intent = Intent(this@MainLoginActivity, ManualBookkeepingActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        } catch (e: Exception) {
+            Log.e("TAG", "login(): ", e)
+        }
+    }
+    private suspend fun register(){
+        try{
+            val name=binding.loginName.text.toString()
+            val password=binding.loginPassword.text.toString()
+            val checkPassword=binding.chekPassword.text.toString()
+            val response:RegisterResponse=SmartBookKeepingNetwork.register(UserRegister(name,password,checkPassword))
+            CoroutineScope(Dispatchers.Main).launch {
+                response.message.showToast()
+            }
+            if (response.code == 200) {
+                val prefs = getPreferences(Context.MODE_PRIVATE)
+                val editor = prefs.edit()
+                if (binding.rememberPassword.isChecked) {
+                    editor.putBoolean("remember_password", true)
+                    editor.putString("name", name)
+                    editor.putString("password", password)
+                } else {
+                    editor.clear()
+                }
+                editor.apply()
+                val intent = Intent(this@MainLoginActivity, ManualBookkeepingActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }catch (e: Exception) {
+            Log.e("TAG", "login(): ", e)
+        }
     }
 }

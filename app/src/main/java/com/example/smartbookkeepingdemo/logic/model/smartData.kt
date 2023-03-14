@@ -36,7 +36,16 @@ data class GetBillDataByMoney(
     val pageSize:String
 )
 
-data class User(val userName:String,val userGender:Int,val tag:Int)
+data class User(val code: Int, val `data`: Data, val message: String)
+data class Data(
+    val avatarUrl: Any,
+    val gender: Any,
+    val tag: Any,
+    val token: String,
+    val userId: Long,
+    val userName: String,
+    val userRole: Any
+)
 data class UserLogin(val userName:String,val userPassword:String)
 data class LoginResponse(val code:Int,val data: User,val message:String)
 data class UserRegister(val userName:String,val userPassword:String,val checkPassword:String)
@@ -46,3 +55,4 @@ data class UserSearch(val code:Int,val data:User,val message:String)
 data class ChangeNameResponse(val code:Int,val message:String)
 data class ChangeGenderResponse(val code:Int,val message:String)
 data class ChangeAgeResponse(val code:Int,val message:String)
+

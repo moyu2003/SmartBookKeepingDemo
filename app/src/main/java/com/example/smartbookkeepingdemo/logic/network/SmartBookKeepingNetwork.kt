@@ -17,13 +17,13 @@ object SmartBookKeepingNetwork {
     suspend fun getBillByTime(getBillDataByTime: GetBillDataByTime)= smartService.getBillByTime(getBillDataByTime).await()
     suspend fun getBillByMoney(getBillDataByMoney: GetBillDataByMoney)= smartService.getBillByMoney(getBillDataByMoney).await()
     suspend fun getSum(early:String, later:String, bill:Int)= smartService.getSum(early,later, bill).await()
-    suspend fun login(userLogin: UserLogin)= smartService.login(userLogin)
-    suspend fun register( userRegister: UserRegister)= smartService.register(userRegister)
-    suspend fun loginOut()= smartService.loginOut()
-    suspend fun searchUser()= smartService.searchUser()
-    suspend fun changeName( userName:String)= smartService.changeName(userName)
-    suspend fun changeGender( gender:Int)= smartService.changeGender(gender)
-    suspend fun changeAge( tag:Int)= smartService.changeAge(tag)
+    suspend fun login(userLogin: UserLogin)= smartService.login(userLogin).await()
+    suspend fun register( userRegister: UserRegister)= smartService.register(userRegister).await()
+    suspend fun loginOut()= smartService.loginOut().await()
+    suspend fun searchUser()= smartService.searchUser().await()
+    suspend fun changeName( userName:String)= smartService.changeName(userName).await()
+    suspend fun changeGender( gender:Int)= smartService.changeGender(gender).await()
+    suspend fun changeAge( tag:Int)= smartService.changeAge(tag).await()
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
