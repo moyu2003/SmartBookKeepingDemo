@@ -5,6 +5,14 @@
       <map>
         <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/activity_load.xml" value="0.25364583333333335" />
         <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/activity_main_login.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/activity_manual_bookkeeping.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/activity_splash.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/bookkeeping_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/fragment_add.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/fragment_asset.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/fragment_bill.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/fragment_mine.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android Stdio/AndroidStdioProjects/1234/SmartBookKeepingDemo/app/src/main/res/layout/fragment_restitution.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>

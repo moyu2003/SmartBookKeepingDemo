@@ -79,7 +79,6 @@ class MainLoginActivity : AppCompatActivity() {
             if (response.code == 200) {
                 val prefs = getPreferences(Context.MODE_PRIVATE)
                 val editor = prefs.edit()
-                editor.putString("token",response.data.data.token)
                 if (binding.rememberPassword.isChecked) {
                     editor.putBoolean("remember_password", true)
                     editor.putString("name", name)
@@ -88,7 +87,7 @@ class MainLoginActivity : AppCompatActivity() {
                     editor.clear()
                 }
                 editor.apply()
-                val intent = Intent(this@MainLoginActivity, ManualBookkeepingActivity::class.java)
+                val intent = Intent(this@MainLoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -96,7 +95,7 @@ class MainLoginActivity : AppCompatActivity() {
             Log.e("TAG", "login(): ", e)
         }
     }
-    private suspend fun register(){
+    /*private suspend fun register(){
         try{
             val name=binding.loginName.text.toString()
             val password=binding.loginPassword.text.toString()
@@ -123,5 +122,5 @@ class MainLoginActivity : AppCompatActivity() {
         }catch (e: Exception) {
             Log.e("TAG", "login(): ", e)
         }
-    }
+    }*/
 }

@@ -36,7 +36,7 @@ data class GetBillDataByMoney(
     val pageSize:String
 )
 
-data class User(val code: Int, val `data`: Data, val message: String)
+data class User(val code: Int, val user: Data, val message: String)
 data class Data(
     val avatarUrl: Any,
     val gender: Any,
